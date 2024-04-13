@@ -1,0 +1,7 @@
+.header{
+  margin: 2rem;
+  text-align: center;
+  font-size: var(--header-font-size);
+  color: #f7f7f7;
+  text-shadow: 0 0 0.2rem rgba(247, 247, 247, 0.6);
+}
