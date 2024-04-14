@@ -6,3 +6,122 @@
   margin: 2rem;
   margin-top: 0;
 }
+
+.control-icons-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: var(--big-icon-size);
+  margin: 1rem;
+  color: #facf5a;
+  border-bottom-style: solid;
+  border-bottom-color: #f7f7f7;
+  border-bottom-width: 0.3rem;
+}
+
+.control-icons-container img {
+  max-height: 4.5rem;
+  width: auto;
+  padding: 0 1rem 0.5rem 0;
+}
+
+.control-icons-container a{
+  padding-bottom: 0.6rem;
+}
+
+.control-icons-container i {
+  padding: 0 1rem 0.5rem 1rem;
+}
+
+.control-icons-container i:hover{
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.folders-container{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.folder{
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-info-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: var(--smaller-font-size);
+  color: #f7f7f7;
+  padding-right: 1rem;
+}
+
+.folder-info-container:hover {
+  cursor: pointer;
+  color: rgba(247, 247, 247, 0.9);
+}
+
+.folder-info-container:hover i:first-child{
+  color: rgba(250, 207, 90, 0.9);
+}
+
+.folder-info-container i:first-child{
+  color: rgba(250, 207, 90, 1);
+  padding: 0 0.5rem;
+}
+
+.folder-info-container p{
+  padding: 0 0.5rem;
+}
+
+.folder-info-container i:last-child{
+  align-self: center;
+  padding-top: 0.3rem;
+  padding-left: 1rem;
+}
+
+.folder-links-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.stellar-link-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: var(--extra-small-font-size);
+  color: rgba(247, 247, 247, 1);
+  margin:0.5rem;
+}
+
+.stellar-icon{
+  height: 1.3rem;
+  width: 1.3rem;
+  margin-right: 0.7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251,109,63,1) 0%, rgba(252,101,70,1) 100%);
+  box-shadow: 0 0 5px 0px rgba(252,101,70,0.75);
+}
+
+.stellar-link:hover{
+  cursor: pointer;
+  color: rgba(247, 247, 247, 0.9);
+}
+
+.stellar-link-container i:last-child{
+  color: rgba(205, 69, 69, 1);
+  margin-left: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.stellar-link-container i:last-child:hover{
+  cursor: pointer;
+  color: rgba(205, 69, 69, 0.9);
+}
