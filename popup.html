@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/main-section.css">
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/special-classes.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,7 @@
       <div class="control-icons-container">
         <img src="icons/saturn-128x128px.png">
         <i class="fa-solid fa-folder-plus" title="Create new folder"></i>
-        <i class="fa-solid fa-folder-minus" title="Delete folder"></i>
+        <i class="fa-solid fa-folder-minus" title="Delete mode"></i>
         <a href="https://github.com/RomanVoevoda" target="_blank">
           <i class="fa-brands fa-github"></i>
         </a>
@@ -35,6 +36,7 @@
 
       <div class="folders-container">
         <div class="folder">
+
           <div class="folder-info-container">
             <i class="fa-solid fa-folder"></i>
             <p>Test Folder</p>
@@ -49,8 +51,13 @@
                 <p>Test Link</p>   
               </a>
 
-              <i class="fa-solid fa-trash-can"></i>
+              <i class="fa-solid fa-trash-can display-none"></i>
             </div>
+          </div>
+
+          <div class="create-new-link-button">
+            <i class="fa-solid fa-plus"></i>
+            <p>Add new link</p> 
           </div>
 
         </div>      
@@ -59,7 +66,7 @@
 
     <div class="new-folder-form-container">
       <form class="new-folder-form">
-        <i class="fa-solid fa-xmark"></i>
+        <i class="fa-solid fa-xmark" id="folder-form-close-button"></i>
 
         <label for="folder-name">Enter folder name</label>
         <input type="text" id="folder-name" name="folder-name" 
@@ -73,7 +80,7 @@
 
     <div class="new-link-form-container">
       <form class="new-link-form">
-        <i class="fa-solid fa-xmark"></i>
+        <i class="fa-solid fa-xmark" id="link-form-close-button"></i>
 
         <label for="link-name">Enter link name</label>
         <input type="text" id="link-name" name="link-name" 
@@ -107,5 +114,7 @@
         <path d="M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z" />
       </svg>
     </div>
+
+    <script src="scripts/popup.js"></script>
   </body>
 </html>
