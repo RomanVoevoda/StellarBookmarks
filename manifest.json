@@ -11,7 +11,8 @@
     "128": "icons/saturn-128x128px.png"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Click to open panel"
   },
   "commands": {},
   "permissions": [
@@ -20,5 +21,8 @@
   "side_panel": {
     "default_path": "popup.html"
   },
-  "background":{}
+  "background":{
+    "service_worker": "scripts/service-worker.js",
+    "type": "module"
+  }
 }
