@@ -5,3 +5,7 @@
 .display-none{
   display: none !important;
 }
+
+.open{
+  height: auto;
+}

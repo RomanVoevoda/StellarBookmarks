@@ -84,6 +84,13 @@
   padding-left: 1rem;
 }
 
+.folder-content-container{
+  display: grid;
+  height: 0;
+  overflow: hidden;
+  justify-content: flex-end;
+}
+
 .folder-links-container{
   display: flex;
   flex-direction: column;
