@@ -1,6 +1,6 @@
 const newFolderButton = document.querySelector('.fa-folder-plus');
 const deleteModeButton = document.querySelector('.fa-folder-minus');
-const createNewLinkButton = document.querySelector('.create-new-link-button');
+const createNewLinkButton = document.querySelectorAll('.create-new-link-button');
 
 const newFolderFormCloseButton = document.querySelector('#folder-form-close-button');
 const newLinkFormCloseButton = document.querySelector('#link-form-close-button');
@@ -16,9 +16,11 @@ newFolderFormCloseButton.addEventListener('click', () => {
   newFolderFormContainer.classList.remove('flex');
 });
 
-createNewLinkButton.addEventListener('click', () => {
-  newLinkFormContainer.classList.add('flex');
-});
+for(let button of createNewLinkButton) {
+  button.addEventListener('click', () => {
+    newLinkFormContainer.classList.add('flex');
+  });
+}
 
 newLinkFormCloseButton.addEventListener('click', () => {
   newLinkFormContainer.classList.remove('flex');
@@ -69,4 +71,4 @@ for(let i = 0; i < foldersInfoContainers.length; i ++) {
       infoContainerCaretIcons[i].classList.remove('fa-caret-right');
     }
   })
-};
+}
