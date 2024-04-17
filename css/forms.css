@@ -49,6 +49,29 @@
   border-radius: 0.5rem;
 }
 
+input[type="color" i] {
+  width: calc(100% - 4rem);
+  height: 3rem;
+  margin: 1rem 2rem;
+  border-radius: 0.6rem;
+  padding: 0;
+  border-style: solid;
+  border-color: rgba(44, 45, 52, 0.9);
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgba(44, 45, 52, 0.9);
+  outline-offset: -2px;
+}
+
+input[type="color" i]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+
+input[type="color" i]::-webkit-color-swatch {
+  border-radius: 0.5rem;
+}
+
 .form-button{
   margin-bottom: 1rem;
   padding: 1rem;

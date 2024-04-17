@@ -2,10 +2,12 @@ const mainFoldersContainer = document.querySelector('.folders-container');
 
 const createNewFolderConfirmButtom = document.querySelector('.new-folder-form button');
 const folderNameInput = document.getElementById('folder-name-input');
+const folderColorInput = document.getElementById('folder-color-input');
 
 const createNewLinkConfirmButtom = document.querySelector('.new-link-form button');
 const linkNameInput = document.getElementById('link-name-input');
 const linkUrlInput = document.getElementById('link-url-input');
+const linkColorInput = document.getElementById('link-color-input');
 
 
 let indexOfCreateLinkButton = 0;
@@ -14,10 +16,11 @@ const bookmarksManager = [];
 
 function CreateNewFolder() {
   this.name = folderNameInput.value;
+  this.color = hexToRGBA(folderColorInput.value, 1, 0, 0, 0);
   this.body = `
     <div class="folder">
       <div class="folder-info-container">
-        <i class="fa-solid fa-folder-open"></i>
+        <i class="fa-solid fa-folder-open" style="color: ${this.color};"></i>
         <p>${this.name}</p>
         <i class="fa-solid fa-caret-down"></i>
       </div>
@@ -34,7 +37,7 @@ function CreateNewFolder() {
     this.body = `
     <div class="folder">
       <div class="folder-info-container">
-        <i class="fa-solid fa-folder-open"></i>
+        <i class="fa-solid fa-folder-open" style="color: ${this.color};"></i>
         <p>${this.name}</p>
         <i class="fa-solid fa-caret-down"></i>
       </div>
@@ -53,16 +56,19 @@ function CreateNewFolder() {
 function CreateNewLink() {
   this.name = linkNameInput.value;
   this.url = linkUrlInput.value;
+  this.iconBoxShadow = `box-shadow: 0 0 5px 0px ${hexToRGBA(linkColorInput.value, 1, 1, -8, 7)};`;
+  this.iconBackground = `style="background: radial-gradient(circle, ${hexToRGBA(linkColorInput.value, 0.5, 0, 0, 0)} 0%, 
+    ${hexToRGBA(linkColorInput.value, 1, 1, -8, 7)} 100%); ${this.iconBoxShadow}"`;
   this.body = `
     <div class="stellar-link-container">
-      <span class="stellar-icon"></span>
+      <span class="stellar-icon" ${this.iconBackground}></span>
   
       <a href="${this.url}" class="stellar-link" target="_blank">
         <p>${this.name}</p>   
       </a>
   
       <i class="fa-solid fa-trash-can display-none"></i>
-    </div>`
+    </div>`;
 }
 
 function findAllLinksBody(arr) {
@@ -132,6 +138,15 @@ function openLinkCreationForm(id) {
   newLinkFormContainer.classList.add('flex');
   indexOfCreateLinkButton = id;
 }
+
+function hexToRGBA(hex, alpha, rCorrection, gCorrection, bCorrection) {
+  let r = parseInt(hex.slice(1, 3), 16) + rCorrection;
+  let  g = parseInt(hex.slice(3, 5), 16) + gCorrection;
+  let  b = parseInt(hex.slice(5, 7), 16) + bCorrection;
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha} )`;
+}
+
 
 createNewFolderConfirmButtom.addEventListener('click', () => {
   bookmarksManager.push(new CreateNewFolder());
