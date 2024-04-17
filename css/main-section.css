@@ -42,11 +42,28 @@
   display: flex;
   flex-direction: column;
   margin: 1rem;
+  overflow-y: scroll;
+}
+
+.folders-container::-webkit-scrollbar {
+  width: 0.5rem; /* Ширина всего элемента навигации */
+}
+
+.folders-container::-webkit-scrollbar-track {
+  background: transparent; /* Цвет дорожки */
+}
+
+.folders-container::-webkit-scrollbar-thumb {
+  background-color: rgba(5, 12, 38, 0.8); /* Цвет бегунка */
+  border-radius: 50%; /* Округление бегунка */
+  border: 3px solid rgba(5, 12, 38, 0.8); /* Оформление границ бегунка */
 }
 
 .folder{
   display: flex;
+  align-items: flex-end;
   flex-direction: column;
+  margin-top: 1rem;
 }
 
 .folder-info-container{
@@ -57,7 +74,6 @@
   font-size: var(--smaller-font-size);
   color: #f7f7f7;
   padding-right: 1rem;
-  max-width: inherit;
 }
 
 .folder-info-container:hover {
@@ -89,6 +105,7 @@
   height: 0;
   overflow: hidden;
   justify-content: flex-end;
+  margin-top: 0.2rem;
 }
 
 .folder-links-container{
@@ -96,7 +113,6 @@
   flex-direction: column;
   justify-content: flex-end;
   margin-right: 1rem;
-  margin-top: 1rem;
 }
 
 .stellar-link-container, .create-new-link-button{

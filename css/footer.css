@@ -2,10 +2,11 @@
   overflow: hidden;
   position: absolute;
   bottom: 0;
+  width: 100%;
 }
 
 .footer-clouds {
-  fill: #2f1b41; 
+  fill: rgba(5, 12, 38, 0.5); 
   width: 100%; 
   height: 4.5rem; 
   transform: rotate(180deg) skewX(5deg);
