@@ -88,7 +88,7 @@ function refreshBookmarksManager() {
   mainFoldersContainer.innerHTML = allFolders;
 }
 
-function addAttributesForFolders(){
+function refreshEventListeners(){
   const foldersInfoContainers = document.getElementsByClassName('folder-info-container');
   const createNewLinkButtons = document.querySelectorAll('.create-new-link-button');
 
@@ -96,8 +96,12 @@ function addAttributesForFolders(){
     let folderId = 'folder-id-' + [i];
     let buttonId = [i];
     foldersInfoContainers[i].setAttribute('id', `${folderId}`);
-    foldersInfoContainers[i].setAttribute('onclick', `closeOrOpenFolder("` + `${folderId}` + `")`);
-    createNewLinkButtons[i].setAttribute('onclick', `openLinkCreationForm("` + `${buttonId}` + `")`);
+    foldersInfoContainers[i].addEventListener('click', () => {
+      closeOrOpenFolder(folderId);
+    })
+    createNewLinkButtons[i].addEventListener('click', () => {
+      openLinkCreationForm(buttonId);
+    })
   }
 }
 
@@ -133,7 +137,7 @@ createNewFolderConfirmButtom.addEventListener('click', () => {
   bookmarksManager.push(new CreateNewFolder());
   refreshBookmarksManager();
   newFolderFormContainer.classList.remove('flex');
-  addAttributesForFolders();
+  refreshEventListeners();
 });
 
 createNewLinkConfirmButtom .addEventListener('click', () => {
@@ -141,6 +145,6 @@ createNewLinkConfirmButtom .addEventListener('click', () => {
 
   bookmarksManager[indexOfCreateLinkButton].refreshFolderBody();
   refreshBookmarksManager();
-  addAttributesForFolders();
+  refreshEventListeners();
   newLinkFormContainer.classList.remove('flex');
 });
