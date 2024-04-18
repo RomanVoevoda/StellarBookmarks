@@ -12,7 +12,60 @@ const linkColorInput = document.getElementById('link-color-input');
 
 let indexOfCreateLinkButton = 0;
 
-const bookmarksManager = [];
+const bookmarksManager = [
+  {
+    name: 'Test Folder',
+    body: `
+      <div class="folder">
+        <div class="folder-info-container">
+          <i class="fa-solid fa-folder-open"></i>
+          <p>Test Folder</p>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="folder-content-container open">     
+          ${findAllLinksBody(this.arrayOfLinks)}
+          <div class="create-new-link-button">
+            <i class="fa-solid fa-plus"></i>
+            <p>Add new link</p> 
+          </div>
+        </div>
+      </div>`,
+    arrayOfLinks: [
+      {
+        name: 'Test Link',
+        body: `
+          <div class="stellar-link-container">
+            <span class="stellar-icon"></span>
+        
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="stellar-link" target="_blank">
+              <p>Test Link</p>   
+            </a>
+        
+            <i class="fa-solid fa-trash-can display-none"></i>
+          </div>`,
+      },
+    ],
+    refreshFolderBody() {
+      this.body = `
+        <div class="folder">
+          <div class="folder-info-container">
+            <i class="fa-solid fa-folder-open"></i>
+            <p>${this.name}</p>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <div class="folder-content-container open">
+            ${findAllLinksBody(this.arrayOfLinks)}
+            <div class="create-new-link-button">
+              <i class="fa-solid fa-plus"></i>
+              <p>Add new link</p> 
+            </div>
+          </div>
+        </div>`
+    }
+  },
+];
+
+refreshEventListeners();//Первый запуск для тестовых папок, ссылок
 
 function CreateNewFolder() {
   this.name = folderNameInput.value;
@@ -149,15 +202,18 @@ function hexToRGBA(hex, alpha, rCorrection, gCorrection, bCorrection) {
 
 
 createNewFolderConfirmButtom.addEventListener('click', () => {
+  console.log(bookmarksManager);
   bookmarksManager.push(new CreateNewFolder());
+  console.log(bookmarksManager);
   refreshBookmarksManager();
   newFolderFormContainer.classList.remove('flex');
   refreshEventListeners();
 });
 
 createNewLinkConfirmButtom .addEventListener('click', () => {
+  console.log(bookmarksManager);
   bookmarksManager[indexOfCreateLinkButton].arrayOfLinks.push(new CreateNewLink());
-
+  console.log(bookmarksManager);
   bookmarksManager[indexOfCreateLinkButton].refreshFolderBody();
   refreshBookmarksManager();
   refreshEventListeners();

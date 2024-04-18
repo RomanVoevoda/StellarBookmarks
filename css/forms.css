@@ -22,14 +22,21 @@
 }
 
 .new-folder-form i, .new-link-form i{
-  margin: 1rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 1.2rem 0 0;
+  border-radius: 0.7rem;
   align-self: flex-end;
-  font-size: var(--header-font-size);
+  font-size: var(--normal-icon-size);
 }
 
 .new-folder-form i:hover, .new-link-form i:hover {
   cursor: pointer;
-  color: rgba(44, 45, 52, 0.9);
+  color: rgba(247, 247, 247, 0.9);
+  background-color: rgba(205, 69, 69, 1);
 }
 
 .new-folder-form label, .new-link-form label{
@@ -72,6 +79,10 @@ input[type="color" i]::-webkit-color-swatch {
   border-radius: 0.5rem;
 }
 
+input[type="color" i]:hover {
+  cursor: pointer;
+}
+
 .form-button{
   margin-bottom: 1rem;
   padding: 1rem;
@@ -80,16 +91,16 @@ input[type="color" i]::-webkit-color-swatch {
   font-size: var(--header-font-size);
   color: rgba(44, 45, 52, 1);
   background-color: #d8d7d7;
-  box-shadow: 0 0 0.3rem 0 rgba(44, 45, 52, 0.9) inset;
+  box-shadow: 0 -0.2rem 0.3rem 0 rgba(44, 45, 52, 0.5) inset;
 }
 
 .form-button:hover{
   scale: 1.05;
   cursor: pointer;
-  box-shadow: 0 0 0.2rem 0 rgba(44, 45, 52, 0.9) inset;
+  box-shadow: 0 -0.2rem 0.4rem 0 rgba(44, 45, 52, 0.5) inset;
 }
 
 .form-button:active{
   scale: 1;
-  box-shadow: 0 0 0.5rem 0 rgba(44, 45, 52, 0.9) inset;
+  box-shadow: 0 -0.2rem 0.2rem 0 rgba(44, 45, 52, 0.5) inset;
 }
