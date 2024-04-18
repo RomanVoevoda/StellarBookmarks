@@ -64,6 +64,25 @@
   align-items: flex-end;
   flex-direction: column;
   margin-top: 1rem;
+  position: relative;
+}
+
+.fa-trash-arrow-up{
+  width: 2rem;
+  height: 0;
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: var(--smaller-font-size) !important;
+  color: rgba(205, 69, 69, 1);
+  position: relative;
+  right: 1rem;
+  top: 1.1rem;
+}
+
+.fa-trash-arrow-up:hover {
+  cursor: pointer;
+  color: rgba(205, 69, 69, 0.9);
 }
 
 .folder-info-container{
@@ -141,7 +160,7 @@
 
 .stellar-link-container i:last-child{
   color: rgba(205, 69, 69, 1);
-  margin-left: 1.5rem;
+  margin-left: 1.2rem;
   font-size: 1.3rem;
 }
 

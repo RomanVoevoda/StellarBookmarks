@@ -1,4 +1,7 @@
-.new-folder-form-container, .new-link-form-container{
+.new-folder-form-container, 
+.new-link-form-container,
+.delete-folder-form-container,
+.delete-link-form-container{
   width: 100%;
   height: 100%;
   display: none;
@@ -11,7 +14,10 @@
   background-color: rgba(44, 45, 52, 0.8);
 }
 
-.new-folder-form, .new-link-form {
+.new-folder-form, 
+.new-link-form,
+.delete-folder-form,
+.delete-link-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,9 +25,13 @@
   font-size: var(--smaller-font-size);
   border-radius: 1rem;
   color: rgba(44, 45, 52, 1);
+  margin: 1rem;
 }
 
-.new-folder-form i, .new-link-form i{
+.new-folder-form i, 
+.new-link-form i,
+.delete-folder-form i,
+.delete-link-form i{
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -33,16 +43,55 @@
   font-size: var(--normal-icon-size);
 }
 
-.new-folder-form i:hover, .new-link-form i:hover {
+.new-folder-form i:hover, 
+.new-link-form i:hover,
+.delete-folder-form i:first-child:hover,
+.delete-link-form i:first-child:hover {
   cursor: pointer;
   color: rgba(247, 247, 247, 0.9);
   background-color: rgba(205, 69, 69, 1);
 }
 
-.new-folder-form label, .new-link-form label{
+.new-folder-form label, 
+.new-link-form label{
   align-self: flex-start;
   margin: 0 2rem;
   color: rgba(44, 45, 52, 1);
+}
+
+.form-pagraph{
+  margin: 1rem 2rem;
+}
+
+#folder-for-deletion,
+#link-for-deletion {
+  margin: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#folder-for-deletion i{
+  margin: 0 0.3rem;
+  color: #facf5a;
+}
+
+#link-for-deletion i{
+  color: rgba(205, 69, 69, 1);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+#link-for-deletion a:hover{
+  color: rgba(44, 45, 52, 1);
+  cursor: auto;
+}
+
+#folder-for-deletion i:first-child:hover,
+#link-for-deletion i:first-child:hover{
+  cursor: auto;
+  background-color: transparent;
 }
 
 .form-text-input{

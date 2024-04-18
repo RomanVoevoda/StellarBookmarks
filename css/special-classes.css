@@ -6,6 +6,10 @@
   display: none !important;
 }
 
+.hidden-element{
+  visibility: hidden;
+}
+
 .open{
   height: auto;
 }
