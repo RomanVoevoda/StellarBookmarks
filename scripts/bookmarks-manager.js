@@ -5,6 +5,7 @@ const folderNameInput = document.getElementById('folder-name-input');
 const folderColorInput = document.getElementById('folder-color-input');
 
 const createNewLinkConfirmButtom = document.querySelector('.new-link-form button');
+const labelForLinkNameInput = document.querySelector('#label-for-link-name-input');
 const linkNameInput = document.getElementById('link-name-input');
 const linkUrlInput = document.getElementById('link-url-input');
 const linkColorInput = document.getElementById('link-color-input');
@@ -17,15 +18,18 @@ let indexOfCreateLinkButton = 0;
 const bookmarksManager = [
   {
     name: 'Test Folder',
+    status: `open`,
+    icon: `fa-folder-open`,
+    caret: `fa-caret-down`,
     body: `
       <div class="folder">
         <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
         <div class="folder-info-container">
-          <i class="fa-solid fa-folder-open"></i>
+          <i class="fa-solid ${this.icon}"></i>
           <p>Test Folder</p>
-          <i class="fa-solid fa-caret-down ${changeCaretsStatus()}"></i>
+          <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
         </div>
-        <div class="folder-content-container open">     
+        <div class="folder-content-container ${this.status}">     
           ${findAllLinksBody(this.arrayOfLinks)}
           <div class="create-new-link-button">
             <i class="fa-solid fa-plus"></i>
@@ -67,11 +71,11 @@ const bookmarksManager = [
         <div class="folder">
           <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
           <div class="folder-info-container">
-            <i class="fa-solid fa-folder-open"></i>
+            <i class="fa-solid ${this.icon}"></i>
             <p>${this.name}</p>
-            <i class="fa-solid fa-caret-down ${changeCaretsStatus()}"></i>
+            <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
           </div>
-          <div class="folder-content-container open">
+          <div class="folder-content-container ${this.status}">
             ${findAllLinksBody(this.arrayOfLinks)}
             <div class="create-new-link-button">
               <i class="fa-solid fa-plus"></i>
@@ -90,15 +94,18 @@ refreshEventListeners();//Первый запуск для тестовых па
 function CreateNewFolder() {
   this.name = folderNameInput.value;
   this.color = hexToRGBA(folderColorInput.value, 1, 0, 0, 0);
+  this.status = `open`;
+  this.icon = `fa-folder-open`;
+  this.caret = `fa-caret-down`;
   this.body = `
     <div class="folder">
       <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
       <div class="folder-info-container">
-        <i class="fa-solid fa-folder-open" style="color: ${this.color};"></i>
+        <i class="fa-solid ${this.icon}" style="color: ${this.color};"></i>
         <p>${this.name}</p>
-        <i class="fa-solid fa-caret-down ${changeCaretsStatus()}"></i>
+        <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
       </div>
-      <div class="folder-content-container open">     
+      <div class="folder-content-container ${this.status}">     
         ${findAllLinksBody(this.arrayOfLinks)}
         <div class="create-new-link-button">
           <i class="fa-solid fa-plus"></i>
@@ -112,11 +119,11 @@ function CreateNewFolder() {
     <div class="folder">
       <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
       <div class="folder-info-container">
-        <i class="fa-solid fa-folder-open" style="color: ${this.color};"></i>
+        <i class="fa-solid ${this.icon}" style="color: ${this.color};"></i>
         <p>${this.name}</p>
-        <i class="fa-solid fa-caret-down ${changeCaretsStatus()}"></i>
+        <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
       </div>
-      <div class="folder-content-container open">
+      <div class="folder-content-container ${this.status}">
         ${findAllLinksBody(this.arrayOfLinks)}
         <div class="create-new-link-button">
           <i class="fa-solid fa-plus"></i>
@@ -145,7 +152,7 @@ function CreateNewLink() {
       <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
     </div>`;
   this.refreshLinksBody = function(){
-    `
+    this.body = `
     <div class="stellar-link-container">
       <span class="stellar-icon" ${this.iconBackground}></span>
   
@@ -181,6 +188,23 @@ function refreshBookmarksManager() {
   mainFoldersContainer.innerHTML = allFolders;
 }
 
+function refreshFoldersStatus(){
+  const foldersContentContainers = document.querySelectorAll('.folder-content-container');
+
+  for(let i = 0; i < foldersContentContainers.length; i++) {
+    if(foldersContentContainers[i].classList.contains('open')) {
+      bookmarksManager[i].status = `open`;
+      bookmarksManager[i].icon = `fa-folder-open`;
+      bookmarksManager[i].caret = `fa-caret-down`;
+    } else  {
+      bookmarksManager[i].status = ``;
+      bookmarksManager[i].icon = `fa-folder`;
+      bookmarksManager[i].caret = `fa-caret-right`;
+    }
+    bookmarksManager[i].refreshFolderBody();
+  }
+}
+
 function refreshEventListeners(){
   const foldersInfoContainers = document.getElementsByClassName('folder-info-container');
   const createNewLinkButtons = document.querySelectorAll('.create-new-link-button');
@@ -190,7 +214,7 @@ function refreshEventListeners(){
     let buttonId = [i];
     foldersInfoContainers[i].setAttribute('id', `${folderId}`);
     foldersInfoContainers[i].addEventListener('click', () => {
-      closeOrOpenFolder(folderId);
+      changeFolderStatus(folderId);
     })
     createNewLinkButtons[i].addEventListener('click', () => {
       openLinkCreationForm(buttonId);
@@ -200,7 +224,7 @@ function refreshEventListeners(){
   refreshTrahscansEventListeners();
 }
 
-function closeOrOpenFolder(folderId) {
+function changeFolderStatus(folderId) {
   const infoContainerFolderIcon = document.querySelector('#' + folderId + ' i:first-child');
   const infoContainerCaretIcon = document.querySelector('#' + folderId + ' i:last-child');
   const folderContentContainer = document.querySelector('div#' + folderId + ' + div');
@@ -224,7 +248,10 @@ function closeOrOpenFolder(folderId) {
 }
 
 function openLinkCreationForm(id) {
+  linkNameInput.removeAttribute('style');
+  labelForLinkNameInput.innerHTML = 'Enter link name';
   newLinkFormContainer.classList.add('flex');
+
   indexOfCreateLinkButton = id;
 }
 
@@ -255,18 +282,31 @@ function changeCaretsStatus(){
 createNewFolderConfirmButtom.addEventListener('click', () => {
   bookmarksManager.push(new CreateNewFolder());
 
+  refreshFoldersStatus();
   refreshBookmarksManager();
   refreshEventListeners();
 
   newFolderFormContainer.classList.remove('flex');
 });
 
-createNewLinkConfirmButtom .addEventListener('click', () => {
-  bookmarksManager[indexOfCreateLinkButton].arrayOfLinks.push(new CreateNewLink());
-  refreshObjectsBodies();
+createNewLinkConfirmButtom.addEventListener('click', () => {
+  if(
+    bookmarksManager.some((item) => {
+      let result = item.arrayOfLinks.some((element) => element.name === linkNameInput.value);
+      if(result === true){
+        return true;
+      }
+    })
+  ){
+    linkNameInput.setAttribute('style', 'border-color: rgba(205, 69, 69, 1);');
+    labelForLinkNameInput.innerHTML = 'This name is taken';
+  } else {
+    bookmarksManager[indexOfCreateLinkButton].arrayOfLinks.push(new CreateNewLink());
+    refreshObjectsBodies();
 
-  refreshBookmarksManager();
-  refreshEventListeners();
+    refreshBookmarksManager();
+    refreshEventListeners();
 
-  newLinkFormContainer.classList.remove('flex');
+    newLinkFormContainer.classList.remove('flex');
+  }
 });

@@ -115,15 +115,12 @@ function deleteLink(linkIndex){
     }
   });
 
-  console.log(currentName);
-  console.log(objectIndex);
-  
   let linkIndexInObject = bookmarksManager[objectIndex].arrayOfLinks.findIndex((item) => item.name == currentName);
-  console.log(linkIndexInObject);
   
   bookmarksManager[objectIndex].arrayOfLinks.splice(linkIndexInObject, 1);
 
   deleteLinkFormContainer.classList.remove('flex');
+  
   refreshObjectsBodies();
   refreshBookmarksManager();
   refreshEventListeners();
@@ -132,7 +129,7 @@ function deleteLink(linkIndex){
 function refreshTrahscansEventListeners(){
   const stellarLinks = document.querySelectorAll('.stellar-link-container');
   for(let i = 0; i < linksTrashCans.length; i++) {
-    let trashCanId = 'trash-can-id -' + i;
+    let trashCanId = 'trash-can-id-' + i;
     linksTrashCans[i].setAttribute('id', trashCanId);
 
     linksTrashCans[i].addEventListener('click', () => {
