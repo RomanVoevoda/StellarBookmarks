@@ -16,7 +16,9 @@
   },
   "commands": {},
   "permissions": [
-    "sidePanel"
+    "sidePanel",
+    "storage",
+    "unlimitedStorage"
   ],
   "side_panel": {
     "default_path": "popup.html"

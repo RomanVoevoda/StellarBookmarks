@@ -14,64 +14,100 @@ const linksTrashCans = document.getElementsByClassName('fa-trash-can');
 const foldersTrashCans = document.getElementsByClassName('fa-trash-arrow-up');
 
 let indexOfCreateLinkButton = 0;
+let bookmarksManager = [];
 
-const bookmarksManager = [
-  {
-    name: 'Test Folder',
-    status: `open`,
-    icon: `fa-folder-open`,
-    caret: `fa-caret-down`,
-    body: `
-      <div class="folder">
-        <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
-        <div class="folder-info-container">
-          <i class="fa-solid ${this.icon}"></i>
-          <p>Test Folder</p>
-          <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
-        </div>
-        <div class="folder-content-container ${this.status}">     
-          ${findAllLinksBody(this.arrayOfLinks)}
-          <div class="create-new-link-button">
-            <i class="fa-solid fa-plus"></i>
-            <p>Add new link</p> 
-          </div>
-        </div>
-      </div>`,
-    arrayOfLinks: [
+/*
+  LOCAL STORAGE
+*/
+let storageValue = localStorage.getItem('storageValue');
+
+window.addEventListener('load', () => {
+  if(storageValue.length === 2) {
+    bookmarksManager = [
       {
-        name: 'Test Link',
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
+        name: 'Test Folder',
+        status: `open`,
+        icon: `fa-folder-open`,
+        caret: `fa-caret-down`,
         body: `
-          <div class="stellar-link-container">
-            <span class="stellar-icon"></span>
-        
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="stellar-link" target="_blank">
-              <p>Test Link</p>   
-            </a>
-        
-            <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
+          <div class="folder">
+            <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
+            <div class="folder-info-container">
+              <i class="fa-solid ${this.icon}"></i>
+              <p>Test Folder</p>
+              <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
+            </div>
+            <div class="folder-content-container ${this.status}">     
+              ${findAllLinksBody(this.arrayOfLinks)}
+              <div class="create-new-link-button">
+                <i class="fa-solid fa-plus"></i>
+                <p>Add new link</p> 
+              </div>
+            </div>
           </div>`,
-        
-        refreshLinksBody() {
+        arrayOfLinks: [
+          {
+            name: 'Test Link',
+            url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
+            body: `
+              <div class="stellar-link-container">
+                <span class="stellar-icon"></span>
+            
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="stellar-link" target="_blank">
+                  <p>Test Link</p>   
+                </a>
+            
+                <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
+              </div>`,
+            
+            refreshLinksBody() {
+              this.body = `
+                <div class="stellar-link-container">
+                  <span class="stellar-icon"></span>
+              
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="stellar-link" target="_blank">
+                    <p>Test Link</p>   
+                  </a>
+              
+                  <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
+                </div>`;
+            }
+          },
+        ],
+        refreshFolderBody() {
           this.body = `
-            <div class="stellar-link-container">
-              <span class="stellar-icon"></span>
-          
-              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="stellar-link" target="_blank">
-                <p>Test Link</p>   
-              </a>
-          
-              <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
-            </div>`;
+            <div class="folder">
+              <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
+              <div class="folder-info-container">
+                <i class="fa-solid ${this.icon}"></i>
+                <p>${this.name}</p>
+                <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
+              </div>
+              <div class="folder-content-container ${this.status}">
+                ${findAllLinksBody(this.arrayOfLinks)}
+                <div class="create-new-link-button">
+                  <i class="fa-solid fa-plus"></i>
+                  <p>Add new link</p> 
+                </div>
+              </div>
+            </div>`
         }
       },
-    ],
-    refreshFolderBody() {
-      this.body = `
+    ];
+
+    bookmarksManager[0].refreshFolderBody();
+    refreshBookmarksManager();
+    refreshEventListeners();//Первый запуск для тестовых папок, ссылок
+  } else {
+    bookmarksManager = JSON.parse(storageValue);
+
+    for(let folder of bookmarksManager){
+      folder.refreshFolderBody = function() {
+        this.body = `
         <div class="folder">
           <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
           <div class="folder-info-container">
-            <i class="fa-solid ${this.icon}"></i>
+            <i class="fa-solid ${this.icon}" style="color: ${this.color};"></i>
             <p>${this.name}</p>
             <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
           </div>
@@ -83,13 +119,37 @@ const bookmarksManager = [
             </div>
           </div>
         </div>`
-    }
-  },
-];
+      }
 
-bookmarksManager[indexOfCreateLinkButton].refreshFolderBody();
-refreshBookmarksManager();
-refreshEventListeners();//Первый запуск для тестовых папок, ссылок
+      for(let link of folder.arrayOfLinks) {
+        link.refreshLinksBody = function(){
+          this.body = `
+          <div class="stellar-link-container">
+            <span class="stellar-icon" ${this.iconBackground}></span>
+        
+            <a href="${this.url}" class="stellar-link" target="_blank">
+              <p>${this.name}</p>   
+            </a>
+        
+            <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
+          </div>`
+        };
+
+        link.refreshLinksBody();
+      }
+
+      folder.refreshFolderBody();
+    }
+
+    refreshBookmarksManager();
+    refreshEventListeners();
+  }
+});
+
+window.addEventListener('beforeunload', () => {
+  localStorage.setItem('storageValue', JSON.stringify(bookmarksManager));
+})
+
 
 function CreateNewFolder() {
   this.name = folderNameInput.value;
