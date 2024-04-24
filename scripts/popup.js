@@ -1,3 +1,5 @@
+'use strict';
+
 const newFolderButton = document.querySelector('.fa-folder-plus');
 const deleteModeButton = document.querySelector('.fa-folder-minus');
 

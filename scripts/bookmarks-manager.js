@@ -1,3 +1,5 @@
+'use strict';
+
 const mainFoldersContainer = document.querySelector('.folders-container');
 
 const createNewFolderConfirmButtom = document.querySelector('.new-folder-form button');
@@ -297,6 +299,8 @@ function changeFolderStatus(folderId) {
 
     infoContainerFolderIcon.classList.add('fa-folder');
     infoContainerCaretIcon.classList.add('fa-caret-right');
+
+    refreshFoldersStatus();
   } else {
     infoContainerFolderIcon.classList.add('fa-folder-open');
     infoContainerCaretIcon.classList.add('fa-caret-down');
@@ -304,6 +308,8 @@ function changeFolderStatus(folderId) {
 
     infoContainerFolderIcon.classList.remove('fa-folder');
     infoContainerCaretIcon.classList.remove('fa-caret-right');
+
+    refreshFoldersStatus();
   }
 }
 
