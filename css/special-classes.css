@@ -11,5 +11,5 @@
 }
 
 .open{
-  height: auto;
+  grid-template-rows: 1fr;
 }

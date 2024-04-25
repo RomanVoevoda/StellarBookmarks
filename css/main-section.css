@@ -121,10 +121,10 @@
 
 .folder-content-container{
   display: grid;
-  height: 0;
-  overflow: hidden;
+  grid-template-rows: 0fr;
   justify-content: flex-end;
   margin-top: 0.2rem;
+  transition: grid-template-rows 0.5s;
 }
 
 .folder-links-container{
@@ -132,6 +132,7 @@
   flex-direction: column;
   justify-content: flex-end;
   margin-right: 1rem;
+  overflow: hidden;
 }
 
 .stellar-link-container, .create-new-link-button{
@@ -171,6 +172,7 @@
 
 .create-new-link-button{
   align-self: flex-end;
+  overflow: hidden;
 }
 
 .create-new-link-button p{

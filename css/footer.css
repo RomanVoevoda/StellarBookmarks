@@ -7,7 +7,110 @@
 
 .footer-clouds {
   fill: rgba(5, 12, 38, 0.5); 
-  width: 100%; 
+  width: 110%; 
   height: 4.5rem; 
   transform: rotate(180deg) skewX(5deg);
+}
+
+#footer-clouds-left,
+#footer-clouds-center,
+#footer-clouds-right{
+  position: fixed;
+  bottom: 0;
+}
+
+#footer-clouds-left{
+  left: -30%;
+  -webkit-animation: waving-to-right 20s ease infinite;
+          animation: waving-to-right 20s ease infinite;
+}
+
+#footer-clouds-center{
+  -webkit-animation: waving 20s ease infinite;
+          animation: waving 20s ease infinite;
+}
+
+#footer-clouds-right{
+  right: -30%;
+  -webkit-animation: waving-to-left 20s ease infinite;
+          animation: waving-to-left 20s ease infinite;
+}
+
+@-webkit-keyframes waving{
+  0%{transform: rotate(180deg) skewX(0deg)}
+  25%{transform: rotate(180deg) skewX(25deg)}
+  50%{transform: rotate(180deg) skewX(0deg)}
+  75%{transform: rotate(180deg) skewX(-25deg)}
+  100%{transform: rotate(180deg) skewX(0deg)}
+}
+
+@keyframes waving{
+  0%{transform: rotate(180deg) skewX(0deg)}
+  25%{transform: rotate(180deg) skewX(25deg)}
+  50%{transform: rotate(180deg) skewX(0deg)}
+  75%{transform: rotate(180deg) skewX(-25deg)}
+  100%{transform: rotate(180deg) skewX(0deg)}
+}
+
+@-webkit-keyframes waving-to-right{
+  0%{transform: rotate(180deg) skewX(0deg)}
+  25%{transform: rotate(180deg) skewX(25deg)}
+  50%{transform: rotate(180deg) skewX(30deg)}
+  75%{transform: rotate(180deg) skewX(25deg)}
+  100%{transform: rotate(180deg) skewX(0deg)}
+}
+
+@keyframes waving-to-right{
+  0%{transform: rotate(180deg) skewX(0deg)}
+  25%{transform: rotate(180deg) skewX(25deg)}
+  50%{transform: rotate(180deg) skewX(30deg)}
+  75%{transform: rotate(180deg) skewX(25deg)}
+  100%{transform: rotate(180deg) skewX(0deg)}
+}
+
+@-webkit-keyframes waving-to-left{
+  0%{transform: rotate(180deg) skewX(0deg)}
+  25%{transform: rotate(180deg) skewX(-25deg)}
+  50%{transform: rotate(180deg) skewX(-30deg)}
+  75%{transform: rotate(180deg) skewX(-25deg)}
+  100%{transform: rotate(180deg) skewX(0deg)}
+}
+
+@keyframes waving-to-left{
+  0%{transform: rotate(180deg) skewX(0deg)}
+  25%{transform: rotate(180deg) skewX(-25deg)}
+  50%{transform: rotate(180deg) skewX(-30deg)}
+  75%{transform: rotate(180deg) skewX(-25deg)}
+  100%{transform: rotate(180deg) skewX(0deg)}
+}
+
+#footer-sun{
+  width: 20rem;
+  height: 20rem;
+  position: fixed;
+  left: -7rem;
+  bottom: -7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(252,101,70,0.5) 0%, rgba(252,101,70,0.6) 100%);
+  box-shadow: 0 0 10rem 0 rgba(252,101,70,0.3);
+  -webkit-animation: sun 1000s linear infinite;
+          animation: sun 1000s linear infinite;
+}
+
+@-webkit-keyframes sun{
+  0%{transform: translateX(0) translateY(0)}
+  25%{transform: translateX(14rem) translateY(4rem)}
+  40%{transform: translateX(30rem) translateY(20rem)}
+  50%{transform: translateX(-14rem) translateY(20rem)}
+  75%{transform: translateX(-14rem) translateY(4rem)}
+  100%{transform: translateX(0) translateY(0)}
+}
+
+@keyframes sun{
+  0%{transform: translateX(0) translateY(0)}
+  25%{transform: translateX(14rem) translateY(4rem)}
+  40%{transform: translateX(30rem) translateY(20rem)}
+  50%{transform: translateX(-14rem) translateY(20rem)}
+  75%{transform: translateX(-14rem) translateY(4rem)}
+  100%{transform: translateX(0) translateY(0)}
 }
