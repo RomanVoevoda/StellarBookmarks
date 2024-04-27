@@ -1,7 +1,8 @@
 .new-folder-form-container, 
 .new-link-form-container,
 .delete-folder-form-container,
-.delete-link-form-container{
+.delete-link-form-container,
+.total-cleanup-form-container{
   width: 100%;
   height: 100%;
   display: none;
@@ -17,7 +18,8 @@
 .new-folder-form, 
 .new-link-form,
 .delete-folder-form,
-.delete-link-form {
+.delete-link-form,
+.total-cleanup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +33,8 @@
 .new-folder-form i, 
 .new-link-form i,
 .delete-folder-form i,
-.delete-link-form i{
+.delete-link-form i,
+.total-cleanup-form i{
   width: 3rem;
   height: 3rem;
   display: flex;
@@ -46,7 +49,8 @@
 .new-folder-form i:hover, 
 .new-link-form i:hover,
 .delete-folder-form i:first-child:hover,
-.delete-link-form i:first-child:hover {
+.delete-link-form i:first-child:hover,
+.total-cleanup-form i:hover {
   cursor: pointer;
   color: rgba(247, 247, 247, 0.9);
   background-color: rgba(205, 69, 69, 1);

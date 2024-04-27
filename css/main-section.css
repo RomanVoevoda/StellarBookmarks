@@ -30,12 +30,30 @@
 }
 
 .control-icons-container i {
-  padding: 0 1rem 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  transition: transform 0.2s ease;
 }
 
 .control-icons-container i:hover{
   scale: 1.1;
   cursor: pointer;
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.control-icons-cleanup-icon-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.fa-arrow-rotate-right{
+  color: rgba(205, 69, 69, 1);
+  transition: transform 0.7s ease !important;
+}
+
+.fa-arrow-rotate-right:hover{
+  transform: rotate(360deg) !important;
 }
 
 .folders-container{

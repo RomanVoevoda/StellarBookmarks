@@ -159,3 +159,27 @@ function refreshTrahscansEventListeners(){
 
 confirmFolderDeletionButton.addEventListener('click', () => {deleteFolder(folderTrashCanIndex)});
 confirmLinkDeletionButton.addEventListener('click', () => {deleteLink(linkTrashCanIndex)});
+
+/*
+  TOTAL CLEANUP
+*/
+
+const cleanupIcon = document.querySelector('.fa-arrow-rotate-right');
+const totalCleanupForm = document.querySelector('.total-cleanup-form-container');
+const totalCleanupFormCloseButton = document.querySelector('#total-cleanup-form-close-button');
+const totalCleanupFormConfirmButton = document.querySelector('.total-cleanup-form-container button');
+
+cleanupIcon.addEventListener('click', () => {
+  totalCleanupForm.classList.add('flex');
+});
+
+totalCleanupFormCloseButton.addEventListener('click', () => {
+  totalCleanupForm.classList.remove('flex');
+})
+
+totalCleanupFormConfirmButton.addEventListener('click', () => {
+  bookmarksManager = [];
+  refreshBookmarksManager();
+
+  totalCleanupForm.classList.remove('flex');
+})
