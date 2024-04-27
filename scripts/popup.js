@@ -150,7 +150,7 @@ function refreshTrahscansEventListeners(){
       deleteFolderFormContainer.classList.add('flex');
 
       folderTrashCanIndex = i;
-      folderForDeletionContainer.innerHTML = foldersInfoContainers[i].innerHTML;
+      folderForDeletionContainer.innerHTML = foldersInfoContainers[i].innerHTML + '<i class="fa-solid fa-trash-arrow-up"></i>';
 
       return folderTrashCanIndex;
     });

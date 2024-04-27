@@ -39,11 +39,13 @@ window.addEventListener('load', () => {
               <p>Test Folder</p>
               <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
             </div>
-            <div class="folder-content-container ${this.status}">     
-              ${findAllLinksBody(this.arrayOfLinks)}
-              <div class="create-new-link-button">
-                <i class="fa-solid fa-plus"></i>
-                <p>Add new link</p> 
+            <div class="folder-content-container ${this.status}">
+              <div class="folder-content">     
+                ${findAllLinksBody(this.arrayOfLinks)}
+                <div class="create-new-link-button">
+                  <i class="fa-solid fa-plus"></i>
+                  <p>Add new link</p> 
+                </div>
               </div>
             </div>
           </div>`,
@@ -86,10 +88,12 @@ window.addEventListener('load', () => {
                 <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
               </div>
               <div class="folder-content-container ${this.status}">
-                ${findAllLinksBody(this.arrayOfLinks)}
-                <div class="create-new-link-button">
-                  <i class="fa-solid fa-plus"></i>
-                  <p>Add new link</p> 
+                <div class="folder-content">     
+                  ${findAllLinksBody(this.arrayOfLinks)}
+                  <div class="create-new-link-button">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Add new link</p> 
+                  </div>
                 </div>
               </div>
             </div>`
@@ -114,10 +118,12 @@ window.addEventListener('load', () => {
             <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
           </div>
           <div class="folder-content-container ${this.status}">
-            ${findAllLinksBody(this.arrayOfLinks)}
-            <div class="create-new-link-button">
-              <i class="fa-solid fa-plus"></i>
-              <p>Add new link</p> 
+            <div class="folder-content">     
+              ${findAllLinksBody(this.arrayOfLinks)}
+              <div class="create-new-link-button">
+                <i class="fa-solid fa-plus"></i>
+                <p>Add new link</p> 
+              </div>
             </div>
           </div>
         </div>`
@@ -168,10 +174,12 @@ function CreateNewFolder() {
         <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
       </div>
       <div class="folder-content-container ${this.status}">     
-        ${findAllLinksBody(this.arrayOfLinks)}
-        <div class="create-new-link-button">
-          <i class="fa-solid fa-plus"></i>
-          <p>Add new link</p> 
+        <div class="folder-content">     
+          ${findAllLinksBody(this.arrayOfLinks)}
+          <div class="create-new-link-button">
+            <i class="fa-solid fa-plus"></i>
+            <p>Add new link</p> 
+          </div>
         </div>
       </div>
     </div>`
@@ -186,10 +194,12 @@ function CreateNewFolder() {
         <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
       </div>
       <div class="folder-content-container ${this.status}">
-        ${findAllLinksBody(this.arrayOfLinks)}
-        <div class="create-new-link-button">
-          <i class="fa-solid fa-plus"></i>
-          <p>Add new link</p> 
+        <div class="folder-content">     
+          ${findAllLinksBody(this.arrayOfLinks)}
+          <div class="create-new-link-button">
+            <i class="fa-solid fa-plus"></i>
+            <p>Add new link</p> 
+          </div>
         </div>
       </div>
     </div>`

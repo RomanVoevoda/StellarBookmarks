@@ -70,11 +70,25 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
 }
 
 #folder-for-deletion i{
   margin: 0 0.3rem;
   color: #facf5a;
+}
+
+#folder-for-deletion i:last-child{
+  width: 2rem;
+  height: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: var(--smaller-font-size) !important;
+  color: rgba(205, 69, 69, 1);
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
 }
 
 #link-for-deletion i{
