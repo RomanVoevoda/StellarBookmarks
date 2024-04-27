@@ -34,7 +34,7 @@ deleteLinkFormCloseButton.addEventListener('click', () => {
 });
 
 /*
-  DELETE MODE FUNCTIONS
+  DELETE MODE
 */
 const confirmFolderDeletionButton = document.querySelector('.delete-folder-form button');
 const confirmLinkDeletionButton = document.querySelector('.delete-link-form button');
@@ -109,15 +109,14 @@ function deleteFolder(folderIndex){
 
 function deleteLink(linkIndex){
   const userLinksNames = document.querySelectorAll('.stellar-link p');
-  let currentName = String(userLinksNames[linkIndex].innerText);
-  let objectIndex = bookmarksManager.findIndex((item) => {
-    let result = item.arrayOfLinks.some((element) => element.name === currentName);
-    if(result === true){
-      return true;
-    }
+  let currentLinkName = String(userLinksNames[linkIndex].innerText);
+  let objectIndex = bookmarksManager.findIndex((folder) => {
+    let result = folder.arrayOfLinks.some((link) => link.name === currentLinkName);
+
+    if(result === true) return true;
   });
 
-  let linkIndexInObject = bookmarksManager[objectIndex].arrayOfLinks.findIndex((item) => item.name == currentName);
+  let linkIndexInObject = bookmarksManager[objectIndex].arrayOfLinks.findIndex((link) => link.name == currentLinkName);
   
   bookmarksManager[objectIndex].arrayOfLinks.splice(linkIndexInObject, 1);
 
@@ -130,6 +129,7 @@ function deleteLink(linkIndex){
 
 function refreshTrahscansEventListeners(){
   const stellarLinks = document.querySelectorAll('.stellar-link-container');
+
   for(let i = 0; i < linksTrashCans.length; i++) {
     let trashCanId = 'trash-can-id-' + i;
     linksTrashCans[i].setAttribute('id', trashCanId);
@@ -155,11 +155,6 @@ function refreshTrahscansEventListeners(){
       return folderTrashCanIndex;
     });
   }
-}
-
-function refreshObjectsBodies() {
-  bookmarksManager.forEach((folder) => folder.arrayOfLinks.forEach((link) => link.refreshLinksBody()));
-  bookmarksManager.forEach((folder) => folder.refreshFolderBody());
 }
 
 confirmFolderDeletionButton.addEventListener('click', () => {deleteFolder(folderTrashCanIndex)});
