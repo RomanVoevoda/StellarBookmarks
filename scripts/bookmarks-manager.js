@@ -24,7 +24,7 @@ let bookmarksManager = [];
 let storageValue = localStorage.getItem('storageValue');
 
 window.addEventListener('load', () => {
-  if(storageValue.length === 2) {
+  if(storageValue === null || storageValue.length === 2) {
     bookmarksManager = [
       {
         name: 'Test Folder',
