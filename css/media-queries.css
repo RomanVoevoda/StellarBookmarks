@@ -1,6 +1,8 @@
 @media screen and (max-width: 600px) {
-  html {
-    font-size: 62.5%;
+  :root{
+    --normal-font-size: 2.4rem !important;
+    --smaller-font-size: 2.2rem !important;
+    --extra-small-font-size: 1.8rem !important;
   }
 }
 

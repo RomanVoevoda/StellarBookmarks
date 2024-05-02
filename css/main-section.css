@@ -34,12 +34,6 @@
   transition: transform 0.2s ease;
 }
 
-.control-icons-container i:hover{
-  scale: 1.1;
-  cursor: pointer;
-  transform: scale3d(1.1, 1.1, 1.1);
-}
-
 .control-icons-cleanup-icon-container{
   width: 100%;
   display: flex;
@@ -50,6 +44,12 @@
 .fa-arrow-rotate-right{
   color: rgba(205, 69, 69, 1);
   transition: transform 0.7s ease !important;
+}
+
+.control-icons-container i:hover{
+  scale: 1.1;
+  cursor: pointer;
+  transform: scale3d(1.1, 1.1, 1.1);
 }
 
 .fa-arrow-rotate-right:hover{
