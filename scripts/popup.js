@@ -74,7 +74,9 @@ deleteModeButton.addEventListener('click', () => {
 
     for(let caret of caretRight) {
       caret.classList.remove('hidden-element');
-    } 
+    }
+
+    refreshObjectsBodies();
 
   } else {
     deleteModeButton.classList.add('on');
