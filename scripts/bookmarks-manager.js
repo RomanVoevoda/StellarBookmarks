@@ -27,6 +27,7 @@ window.addEventListener('load', () => {
   if(storageValue === null || storageValue.length === 2) {
     bookmarksManager = [
       {
+        __proto__: foldersMethods,
         name: 'Test Folder',
         status: `open`,
         icon: `fa-folder-open`,
@@ -51,6 +52,7 @@ window.addEventListener('load', () => {
           </div>`,
         arrayOfLinks: [
           {
+            __proto__: linksMethods,
             name: 'Test Link',
             url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
             body: `
@@ -62,42 +64,9 @@ window.addEventListener('load', () => {
                 </a>
             
                 <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
-              </div>`,
-            
-            refreshLinksBody() {
-              this.body = `
-                <div class="stellar-link-container">
-                  <span class="stellar-icon"></span>
-              
-                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="stellar-link" target="_blank">
-                    <p>Test Link</p>   
-                  </a>
-              
-                  <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
-                </div>`;
-            }
+              </div>`,          
           },
         ],
-        refreshFolderBody() {
-          this.body = `
-            <div class="folder">
-              <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
-              <div class="folder-info-container">
-                <i class="fa-solid ${this.icon}"></i>
-                <p>${this.name}</p>
-                <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
-              </div>
-              <div class="folder-content-container ${this.status}">
-                <div class="folder-content">     
-                  ${refreshLinksContainer(this.arrayOfLinks)}
-                  <div class="create-new-link-button">
-                    <i class="fa-solid fa-plus"></i>
-                    <p>Add new link</p> 
-                  </div>
-                </div>
-              </div>
-            </div>`
-        }
       },
     ];
 
@@ -108,41 +77,12 @@ window.addEventListener('load', () => {
     bookmarksManager = JSON.parse(storageValue);
 
     for(let folder of bookmarksManager){
-      folder.refreshFolderBody = function() {
-        this.body = `
-        <div class="folder">
-          <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
-          <div class="folder-info-container">
-            <i class="fa-solid ${this.icon}" style="color: ${this.color};"></i>
-            <p>${this.name}</p>
-            <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
-          </div>
-          <div class="folder-content-container ${this.status}">
-            <div class="folder-content">     
-              ${refreshLinksContainer(this.arrayOfLinks)}
-              <div class="create-new-link-button">
-                <i class="fa-solid fa-plus"></i>
-                <p>Add new link</p> 
-              </div>
-            </div>
-          </div>
-        </div>`
-      }
+
+      Object.setPrototypeOf(folder, foldersMethods);
 
       for(let link of folder.arrayOfLinks) {
-        link.refreshLinksBody = function(){
-          this.body = `
-          <div class="stellar-link-container">
-            <span class="stellar-icon" ${this.iconBackground}></span>
-        
-            <a href="${this.url}" class="stellar-link" target="_blank">
-              <p>${this.name}</p>   
-            </a>
-        
-            <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
-          </div>`
-        };
-
+        Object.setPrototypeOf(link, linksMethods);
+  
         link.refreshLinksBody();
       }
 
@@ -157,6 +97,47 @@ window.addEventListener('load', () => {
 window.addEventListener('beforeunload', () => {
   localStorage.setItem('storageValue', JSON.stringify(bookmarksManager));
 })
+
+/*
+  PROTOTYPES WITH METHODS FOR CONSTRUCTORS
+*/
+let foldersMethods = {
+  refreshFolderBody() {
+    this.body = `
+    <div class="folder">
+      <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
+      <div class="folder-info-container">
+        <i class="fa-solid ${this.icon}" style="color: ${this.color};"></i>
+        <p>${this.name}</p>
+        <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
+      </div>
+      <div class="folder-content-container ${this.status}">
+        <div class="folder-content">     
+          ${refreshLinksContainer(this.arrayOfLinks)}
+          <div class="create-new-link-button">
+            <i class="fa-solid fa-plus"></i>
+            <p>Add new link</p> 
+          </div>
+        </div>
+      </div>
+    </div>`
+  }
+}
+
+let linksMethods = {
+  refreshLinksBody()  {
+    this.body = `
+    <div class="stellar-link-container">
+      <span class="stellar-icon" ${this.iconBackground}></span>
+  
+      <a href="${this.url}" class="stellar-link" target="_blank">
+        <p>${this.name}</p>   
+      </a>
+  
+      <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
+    </div>`
+  }
+}
 
 /*
   CONSTRUCTORS
@@ -187,28 +168,9 @@ function CreateNewFolder() {
       </div>
     </div>`
   this.arrayOfLinks = [];
-  this.refreshFolderBody = function() {
-    this.body = `
-    <div class="folder">
-      <i class="fa-solid fa-trash-arrow-up ${changeTrashCansStatus()}"></i>
-      <div class="folder-info-container">
-        <i class="fa-solid ${this.icon}" style="color: ${this.color};"></i>
-        <p>${this.name}</p>
-        <i class="fa-solid ${this.caret} ${changeCaretsStatus()}"></i>
-      </div>
-      <div class="folder-content-container ${this.status}">
-        <div class="folder-content">     
-          ${refreshLinksContainer(this.arrayOfLinks)}
-          <div class="create-new-link-button">
-            <i class="fa-solid fa-plus"></i>
-            <p>Add new link</p> 
-          </div>
-        </div>
-      </div>
-    </div>`
-
-  }
 }
+
+CreateNewFolder.prototype = foldersMethods;
 
 function CreateNewLink() {
   this.name = linkNameInput.value;
@@ -226,19 +188,9 @@ function CreateNewLink() {
   
       <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
     </div>`;
-  this.refreshLinksBody = function(){
-    this.body = `
-    <div class="stellar-link-container">
-      <span class="stellar-icon" ${this.iconBackground}></span>
-  
-      <a href="${this.url}" class="stellar-link" target="_blank">
-        <p>${this.name}</p>   
-      </a>
-  
-      <i class="fa-solid fa-trash-can ${changeTrashCansStatus()}"></i>
-    </div>`
-  };
 }
+
+CreateNewLink.prototype = linksMethods;
 
 /*
   REFRESHERS
